@@ -3,7 +3,8 @@ from torch import nn
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 from torch.utils.data import DataLoader
-
+torch.xpu.is_available()
+device = ("xpu")
 traindata = datasets.FashionMNIST('./',train=True,download=True,transform=ToTensor())
 testdata = datasets.FashionMNIST('./',train=False,download=True,transform=ToTensor())
 
@@ -11,7 +12,6 @@ batch_size = 64
 train_dl = DataLoader(traindata,batch_size=batch_size)
 test_dl = DataLoader(testdata,batch_size=batch_size)
 
-device = ("cpu")
 class simplenet(nn.Module):
     def __init__(s):
         super().__init__()
